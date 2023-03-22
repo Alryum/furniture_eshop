@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Регистрация{% endblock %}
+
+{% block content %}
+<!-- contact section start -->
+<div class="contact_section layout_padding">
+    <div class="container">
+        <div class="contact_section_2">
+            <div class="row">
+                <div class="col-md-6">
+                    <form id="contact" action="" method="post">
+                    <h1 class="contact_taital">Регистрация</h1>
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="submit" value="Register">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- contact section end -->
+{% endblock %}
