@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Магазин{% endblock %}
+
+{% block content %}
+<!--  design section start -->
+<div class="design_section layout_padding">
+   <div id="my_slider" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+         <div class="carousel-item active">
+            <div class="container">
+               <div class="design_section_2">
+                  <div class="row">
+                     <div class="col-md-4">
+                        {% for i in furniture %}
+                        <div class="box_main">
+                           <p class="chair_text"><a href="{{ i.get_absolute_url }}">{{ i.name }}</a></p>
+                           <div class="image_3" href="{{ i.get_absolute_url }}"><img src="{{ i.image.url }}"></div>
+                           <p class="chair_text">Цена {{ i.price }}р.</p>
+                           <div class="buy_bt"><a href="#">Купить</a></div>
+                        </div>
+                        {% endfor %}
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<!--  design section end -->
+{% endblock %}
