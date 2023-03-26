@@ -3,30 +3,50 @@
 {% block title %}Магазин{% endblock %}
 
 {% block content %}
-<!--  design section start -->
-<div class="design_section layout_padding">
-   <div id="my_slider" class="carousel slide" data-ride="carousel">
-      <div class="carousel-inner">
-         <div class="carousel-item active">
-            <div class="container">
-               <div class="design_section_2">
-                  <div class="row">
-                     <div class="col-md-4">
-                        {% for i in furniture %}
-                        <div class="box_main">
-                           <p class="chair_text"><a href="{{ i.get_absolute_url }}">{{ i.name }}</a></p>
-                           <div class="image_3" href="{{ i.get_absolute_url }}"><img src="{{ i.image.url }}"></div>
-                           <p class="chair_text">Цена {{ i.price }}р.</p>
-                           <div class="buy_bt"><a href="#">Купить</a></div>
-                        </div>
-                        {% endfor %}
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
+<!-- CONTENT =============================-->
+<section class="item content">
+<div class="container toparea">
+	<div class="underlined-title">
+		<div class="editContent">
+			<h1 class="text-center latestitems">OUR PRODUCTS</h1>
+		</div>
+		<div class="wow-hr type_short">
+			<span class="wow-hr-h">
+			<i class="fa fa-star"></i>
+			<i class="fa fa-star"></i>
+			<i class="fa fa-star"></i>
+			</span>
+		</div>
+	</div>
+	<div class="row">
+		{% for i in furniture %}
+		<div class="col-md-4">
+			<div class="productbox">
+				<div class="fadeshop">
+					<div class="captionshop text-center" style="display: none;">
+						<h3>Item Name</h3>
+						<p>
+							{{ i.description|truncatewords:6}}
+						</p>
+						<p>
+							<a href="{% url 'cart_add' i.pk%}" class="learn-more detailslearn"><i class="fa fa-shopping-cart"></i> Purchase</a>
+							<a href="{% url 'detail_product' i.pk %}" class="learn-more detailslearn"><i class="fa fa-link"></i> Details</a>
+						</p>
+					</div>
+					<span class="maxproduct"><img src="{{ i.image.url }}" alt=""></span>
+				</div>
+				<div class="product-details">
+					<a href="{% url 'detail_product' i.pk %}">
+					<h1>{{ i.name }}</h1>
+					</a>
+					<span class="price">
+					<span class="edd_price">{{ i.price }}</span>
+					</span>
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
 </div>
-<!--  design section end -->
+</section>
 {% endblock %}

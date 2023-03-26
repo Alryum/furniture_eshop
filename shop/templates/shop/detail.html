@@ -2,25 +2,50 @@
 {% load static %}
 {% block title %}{{ product.name }}{% endblock %}
 
-
 {% block content %}
-<div class="about_section layout_padding">
-   <div class="container">
-      <div class="about_section_2">
-         <div class="row">
-            <div class="col-md-6">
-               <div class="image_2"><img src="{{ product.image.url }}"></div>
-            </div>
-            <div class="col-md-6">
-               <h1 class="about_taital">{{ product.name }}</h1>
-               <h2 class="about_taital">{{ product.price }}</h2>
-               <p class="about_text">{{ product.description }}</p>
-               <p class="about_text">{{ product.producer }}</p>
-               <p class="about_text">{{ product.size }}</p>
-               <div class="readmore_bt"><a href="#">В корзину</a></div>
-            </div>
-         </div>
-      </div>
-   </div>
+
+<!-- CONTENT =============================-->
+<section class="item content">
+<div class="container toparea">
+	<div class="underlined-title">
+		<div class="editContent">
+			<h1 class="text-center latestitems">{{ product.name }}</h1>
+		</div>
+		<div class="wow-hr type_short">
+			<span class="wow-hr-h">
+			<i class="fa fa-star"></i>
+			<i class="fa fa-star"></i>
+			<i class="fa fa-star"></i>
+			</span>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-8">
+			<div class="productbox">
+				<img src="{{ product.image.url }}" alt="">
+				<div class="clearfix">
+				</div>
+				<br/>
+
+			</div>
+		</div>
+		<div class="col-md-4">
+			<h1>Цена: {{ product.price }}р.</h1>
+			<br>
+			<form action="{% url 'cart_add' product.pk %}" method="post">
+				{{ cart_product_form }}
+				{% csrf_token %}
+				<input type="submit" value="Add to cart">
+			</form>
+			<div class="properties-box">
+				<ul class="unstyle">
+					<li><b class="propertyname">Описание:</b> {{ product.description }}</li>
+					<li><b class="propertyname">Размеры:</b> {{ product.size }}</li>
+					<li><b class="propertyname">Производитель:</b> {{ product.producer }}</li>
+				</ul>
+			</div>
+		</div>
+	</div>
 </div>
+</section>
 {% endblock %}
