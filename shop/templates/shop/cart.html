@@ -8,7 +8,7 @@
 	<div class="container toparea">
 		<div class="underlined-title">
 			<div class="editContent">
-				<h1 class="text-center latestitems">MAKE PAYMENT</h1>
+				<h1 class="text-center latestitems">Корзина</h1>
 			</div>
 			<div class="wow-hr type_short">
 				<span class="wow-hr-h">
@@ -25,13 +25,13 @@
 						<thead>
 							<tr class="edd_cart_header_row">
 								<th class="edd_cart_item_name">
-									Item Name
+									Наименование
 								</th>
 								<th class="edd_cart_item_price">
-									Item Price
+									Цена
 								</th>
 								<th class="edd_cart_actions">
-									Actions
+									Действие
 								</th>
 							</tr>
 						</thead>
@@ -49,7 +49,7 @@
 									{{ product.price }} р.
 								</td>
 								<td class="edd_cart_actions">
-									<a class="edd_cart_remove_item_btn" href="{% url 'cart_remove' product.pk %}">Remove</a>
+									<a class="edd_cart_remove_item_btn" href="{% url 'cart_remove' product.pk %}">Удалить</a>
 								</td>
 							</tr>
 							{% endwith %}
@@ -59,7 +59,7 @@
 							<tr class="edd_cart_footer_row">
 								<th colspan="5">
 									<a class="edd-cart-saving-button edd-submit button " id="edd-save-cart-button"
-										href="{% url 'order_create' %}">Checkout</a>
+										href="{% url 'order_create' %}">Оформить</a>
 								</th>
 							</tr>
 							<tr class="edd_cart_footer_row edd_cart_discount_row" style="display:none;">
@@ -68,7 +68,7 @@
 							</tr>
 							<tr class="edd_cart_footer_row">
 								<th colspan="5" class="edd_cart_total">
-									Total: <span class="edd_cart_amount" data-subtotal="11.99"
+									Итого: <span class="edd_cart_amount" data-subtotal="11.99"
 										data-total="11.99">{{ cart.get_total_price }}р.</span>
 								</th>
 							</tr>
