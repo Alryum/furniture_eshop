@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Корзина{% endblock %}
+
+{% block content %}
+<section class="item content">
+    <div class="container toparea">
+        <div class="underlined-title">
+            <div class="editContent">
+                <h1 class="text-center latestitems">Оформление заказа</h1>
+            </div>
+            <div class="wow-hr type_short">
+                <span class="wow-hr-h">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <h1>Thank you</h1>
+                <p>Your order has been successfully completed. Your order number is
+                    <strong>{{ order.id }}</strong>.
+                </p>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+{% endblock %}

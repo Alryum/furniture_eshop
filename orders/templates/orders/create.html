@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Корзина{% endblock %}
+
+{% block content %}
+<!-- CONTENT =============================-->
+
+<br>
+<br>
+<br>
+
+<div id="edd_checkout_wrap" class="col-md-8 col-md-offset-2">
+    <form id="edd_checkout_cart_form" method="post">
+        <div id="edd_checkout_cart_wrap">
+            <table id="edd_checkout_cart" class="ajaxed">
+                <thead>
+                    <tr class="edd_cart_header_row">
+                        <th class="edd_cart_item_name">
+                            Item Name
+                        </th>
+                        <th class="edd_cart_item_price">
+                            Item Price
+                        </th>
+                        <th class="edd_cart_actions">
+                            Actions
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in cart %}
+                    {% with product=item.product %}
+                    <tr class="edd_cart_item" id="edd_cart_item_0_25" data-download-id="25">
+                        <td class="edd_cart_item_name">
+                            <div class="edd_cart_item_image">
+                                <img width="25" height="25" src="{{ product.image.url }}" alt="">
+                            </div>
+                            <span class="edd_checkout_cart_item_title">{{ product.name }}</span>
+                        </td>
+                        <td class="edd_cart_item_price">
+                            {{ product.price }} р.
+                        </td>
+                        <td class="edd_cart_actions">
+                            <a class="edd_cart_remove_item_btn" href="{% url 'cart_remove' product.pk %}">Remove</a>
+                        </td>
+                    </tr>
+                    {% endwith %}
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr class="edd_cart_footer_row edd_cart_discount_row" style="display:none;">
+                        <th colspan="5" class="edd_cart_discount">
+                        </th>
+                    </tr>
+                    <tr class="edd_cart_footer_row">
+                        <th colspan="5" class="edd_cart_total">
+                            Total: {{cart.get_total_price }}р.</span>
+                        </th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </form>
+</div>
+
+<section class="item content">
+    <div class="container toparea">
+        <div class="underlined-title">
+            <div class="editContent">
+                <h1 class="text-center latestitems">Оформление заказа</h1>
+            </div>
+            <div class="wow-hr type_short">
+                <span class="wow-hr-h">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <div class="done">
+                    <div class="alert alert-success">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        Your message has been sent. Thank you!
+                    </div>
+                </div>
+                <form method="post" action="." id="contactform">
+                    <div class="form">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                    </div>
+                    <input type="submit" value="Отправить">
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+{% endblock %}
