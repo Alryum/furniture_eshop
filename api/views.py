@@ -1,9 +1,10 @@
 from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView, status
 from rest_framework.response import Response
+from rest_framework.generics import ListAPIView, RetrieveAPIView
 from shop.cart import Cart
 from shop.models import Furniture
-from .serializers import FurnitureSerializer, CartItemSerializer
+from .serializers import FurnitureSerializer
 
 
 class CartAddApi(APIView):
@@ -27,7 +28,6 @@ class CartDeleteApi(APIView):
 
 class CartDetailApiView(APIView):
     '''отдает всю корзину'''
-    '''TODO нужно еще вытянуть общую цену итд, смотри item'''
     def get(self, request):
         cart = Cart(request)
         # cart_items = cart.__iter__()
@@ -45,11 +45,12 @@ class CartDetailApiView(APIView):
 
 
 
-class ProductListApiView(APIView):
+class ProductListApiView(ListAPIView):
     '''вывод списка товаров'''
-    pass
+    queryset = Furniture.objects.all()
+    serializer_class = FurnitureSerializer
 
-
-class DetailProductApiView(APIView):
-    '''вывод информации об 1 товаре (detailview)'''
-    pass
+class DetailProductApiView(RetrieveAPIView):
+    '''вывод информации об 1 товаре (detailview) по id (pk)'''
+    queryset = Furniture.objects.all()
+    serializer_class = FurnitureSerializer
